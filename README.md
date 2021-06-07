@@ -1,4 +1,5 @@
 [![master](https://github.com/skonves/generator-von-neumann/workflows/build/badge.svg?branch=master&event=push)](https://github.com/skonves/generator-von-neumann/actions?query=workflow%3Abuild+branch%3Amaster+event%3Apush)
+
 # generator-von-neumann
 
 Generator of generators.
@@ -9,6 +10,8 @@ Generator of generators.
 
 1.  Build the code: `npm run build`
 1.  Run it! `npm start`
+
+Note that the `lint` script is run prior to `build`. Auto-fixable linting or formatting errors may be fixed by running `lint:fix`.
 
 ### Create and run tests
 

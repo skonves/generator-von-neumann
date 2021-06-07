@@ -1,0 +1,27 @@
+import * as Generator from 'yeoman-generator';
+
+module.exports = class extends Generator {
+  initializing() {
+    // Your initialization methods (checking current project state, getting configs, etc)
+  }
+
+  prompting() {
+    // Where you prompt users for options (where you’d call this.prompt())
+  }
+
+  configuring() {
+    // Saving configurations and configure the project (creating .editorconfig files and other metadata files)
+  }
+
+  writing() {
+    // Where you write the generator specific files (routes, controllers, etc)
+  }
+
+  install() {
+    // Where installations are run (npm, yarn)
+  }
+
+  end() {
+    // Called last, cleanup, say good bye, etc
+  }
+};
