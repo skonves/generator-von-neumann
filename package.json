@@ -1,6 +1,6 @@
 {
   "name": "generator-von-neumann",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Generator of generators",
   "main": "generators/app/index.js",
   "scripts": {
