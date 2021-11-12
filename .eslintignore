@@ -1,3 +1,5 @@
 coverage
-lib
+generators
 node_modules
+templates
+temp
