@@ -5,35 +5,35 @@ import { ignore, filterDev } from '../utils';
 
 module.exports = class extends Generator {
   configuring() {
-    // const tsconfig = this.fs.readJSON(
-    //   this.destinationPath('tsconfig.json'),
-    // ) as any;
-    // const outDir = tsconfig?.compilerOptions?.outDir;
-    // this.fs.extendJSON(this.destinationPath('package.json'), {
-    //   main: 'generators/app/index.js',
-    //   scripts: {
-    //     copy: 'run-s -s copy:*',
-    //     'copy:templates': `cpx "src/*/templates/**/*" ${outDir}`,
-    //     'copy:with-extensions': `cpx "src/*/templates/**/.*" ${outDir}`,
-    //     postbuild: 'run-s -s copy',
-    //   },
-    // });
-    // this.fs.extendJSON(this.destinationPath('tsconfig.json'), {
-    //   compilerOptions: {
-    //     outDir,
-    //     rootDir: './src',
-    //   },
-    //   exclude: ['src/**/templates/*'],
-    // });
-    // ignore(this.fs, this.destinationPath('.gitignore'), outDir);
-    // if (this.fs.exists(this.destinationPath('.prettierignore'))) {
-    //   ignore(this.fs, this.destinationPath('.prettierignore'), outDir);
-    //   ignore(this.fs, this.destinationPath('.prettierignore'), 'templates');
-    // }
-    // if (this.fs.exists(this.destinationPath('.eslintignore'))) {
-    //   ignore(this.fs, this.destinationPath('.eslintignore'), outDir);
-    //   ignore(this.fs, this.destinationPath('.eslintignore'), 'templates');
-    // }
+    const tsconfig = this.fs.readJSON(
+      this.destinationPath('tsconfig.json'),
+    ) as any;
+    const outDir = tsconfig?.compilerOptions?.outDir;
+    this.fs.extendJSON(this.destinationPath('package.json'), {
+      main: 'generators/app/index.js',
+      scripts: {
+        copy: 'run-s -s copy:*',
+        'copy:templates': `cpx "src/*/templates/**/*" ${outDir}`,
+        'copy:with-extensions': `cpx "src/*/templates/**/.*" ${outDir}`,
+        postbuild: 'run-s -s copy',
+      },
+    });
+    this.fs.extendJSON(this.destinationPath('tsconfig.json'), {
+      compilerOptions: {
+        outDir,
+        rootDir: './src',
+      },
+      exclude: ['src/**/templates/*'],
+    });
+    ignore(this.fs, this.destinationPath('.gitignore'), outDir);
+    if (this.fs.exists(this.destinationPath('.prettierignore'))) {
+      ignore(this.fs, this.destinationPath('.prettierignore'), outDir);
+      ignore(this.fs, this.destinationPath('.prettierignore'), 'templates');
+    }
+    if (this.fs.exists(this.destinationPath('.eslintignore'))) {
+      ignore(this.fs, this.destinationPath('.eslintignore'), outDir);
+      ignore(this.fs, this.destinationPath('.eslintignore'), 'templates');
+    }
   }
 
   writing() {
