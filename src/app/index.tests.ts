@@ -2,41 +2,13 @@ import { exec, execSync } from 'child_process';
 import * as fs from 'fs';
 import * as rimraf from 'rimraf';
 
-// import { TestContext } from '../test-utils';
-
-// const sut = new TestContext(__dirname);
+const minutes = 60 * 1000;
 
 describe('ts-console:app', function () {
-  // beforeEach(async () => await sut.setup());
-  // afterEach(async () => await sut.teardown());
+  jest.setTimeout(10 * minutes);
 
   describe('when the "basic" mode is run', () => {
-    jest.setTimeout(300000);
-
-    // it('genererates a valid application', async () => {
-    //   // ARRANGE
-
-    //   // ACT
-    //   await sut
-    //     .run()
-    //     .withOptions({ skipInstall: false })
-    //     .withPrompts({ mode: 'basic' });
-
-    //   // ASSERT
-    //   await new Promise<void>((resolve, reject) => {
-    //     exec('npm run build', { cwd: sut.tempdir }, (err) =>
-    //       !!err ? reject(err) : resolve(),
-    //     );
-    //   });
-
-    //   await new Promise<void>((resolve, reject) => {
-    //     exec('npm t', { cwd: sut.tempdir }, (err) =>
-    //       !!err ? reject(err) : resolve(),
-    //     );
-    //   });
-    // });
-
-    it.only('does the thing', (done) => {
+    it('genererates a valid application', (done) => {
       // ARRANGE
 
       // ACT
