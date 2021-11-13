@@ -37,12 +37,20 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    // if (this.fs.exists(this.destinationPath(join('src', 'index.ts')))) {
-    //   this.fs.delete(this.destinationPath(join('src', 'index.ts')));
-    // }
-    // if (this.fs.exists(this.destinationPath(join('src', 'index.tests.ts')))) {
-    //   this.fs.delete(this.destinationPath(join('src', 'index.tests.ts')));
-    // }
+    if (this.fs.exists(this.destinationPath(join('src', 'index.ts')))) {
+      try {
+        this.fs.delete(this.destinationPath(join('src', 'index.ts')));
+      } catch (ex) {
+        console.warn('Unable to delete existing file', ex);
+      }
+    }
+    if (this.fs.exists(this.destinationPath(join('src', 'index.tests.ts')))) {
+      try {
+        this.fs.delete(this.destinationPath(join('src', 'index.tests.ts')));
+      } catch (ex) {
+        console.warn('Unable to delete existing file', ex);
+      }
+    }
     [
       join('src', 'app', 'index.tests.ts'),
       join('src', 'app', 'index.ts'),
