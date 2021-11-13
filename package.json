@@ -22,7 +22,6 @@
     "lint:prettier": "prettier -c .",
     "prepack": "run-s -s build",
     "start": "node ./generators/index.js",
-    "pretest": "run-s -s build",
     "test": "jest",
     "dev": "npm uninstall -g generator-von-neumann && npm run build && npm i -g ."
   },
