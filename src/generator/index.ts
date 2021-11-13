@@ -9,7 +9,6 @@ module.exports = class extends Generator {
     //   this.destinationPath('tsconfig.json'),
     // ) as any;
     // const outDir = tsconfig?.compilerOptions?.outDir;
-
     // this.fs.extendJSON(this.destinationPath('package.json'), {
     //   main: 'generators/app/index.js',
     //   scripts: {
@@ -44,7 +43,6 @@ module.exports = class extends Generator {
     // if (this.fs.exists(this.destinationPath(join('src', 'index.tests.ts')))) {
     //   this.fs.delete(this.destinationPath(join('src', 'index.tests.ts')));
     // }
-
     // [
     //   join('src', 'app', 'index.tests.ts'),
     //   join('src', 'app', 'index.ts'),
