@@ -17,17 +17,20 @@ describe('ts-console:app', function () {
       }.tgz`;
       rimraf('./temp', (err) => {
         if (err) {
-          done();
-          throw err;
+          done(err);
+        } else {
+          try {
+            fs.mkdirSync('./temp');
+            execSync('yo ../generators/app/index.js --mode=basic', {
+              cwd: './temp',
+            });
+            execSync('npm run build', { cwd: './temp' });
+            execSync('npm t', { cwd: './temp' });
+            done();
+          } catch (ex) {
+            done(ex);
+          }
         }
-        fs.mkdirSync('./temp');
-        execSync('yo ../generators/app/index.js --mode=basic', {
-          cwd: './temp',
-        });
-        execSync('npm run build', { cwd: './temp' });
-        execSync('npm t', { cwd: './temp' });
-
-        done();
       });
     });
   });
