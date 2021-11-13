@@ -20,10 +20,13 @@ describe('ts-console:app', function () {
           done(err);
         } else {
           try {
-            execSync('npm pack');
-            execSync(`npm i -g ${pack}`);
+            // execSync('npm pack');
+            // execSync(`npm i -g ${pack}`);
             fs.mkdirSync('./temp');
-            execSync('yo von-neumann --mode=basic', { cwd: './temp' });
+            // execSync('yo von-neumann --mode=basic', { cwd: './temp' });
+            execSync('yo ../generators/app/index.js --mode=basic', {
+              cwd: './temp',
+            });
             execSync('npm run build', { cwd: './temp' });
             execSync('npm t', { cwd: './temp' });
             done();
