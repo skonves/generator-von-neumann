@@ -14,7 +14,7 @@ module.exports = class extends Generator {
       linter: 'eslint',
       testing: 'jest',
     });
-    this.composeWith(require.resolve('../generator'));
+    // this.composeWith(require.resolve('../generator'));
   }
 
   initializing() {
