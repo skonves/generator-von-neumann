@@ -38,8 +38,12 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.delete(join('src', 'index.ts'));
-    this.fs.delete(join('src', 'index.tests.ts'));
+    if (this.fs.exists(this.destinationPath(join('src', 'index.ts')))) {
+      this.fs.delete(this.destinationPath(join('src', 'index.ts')));
+    }
+    if (this.fs.exists(this.destinationPath(join('src', 'index.tests.ts')))) {
+      this.fs.delete(this.destinationPath(join('src', 'index.tests.ts')));
+    }
 
     [
       join('src', 'app', 'index.tests.ts'),
