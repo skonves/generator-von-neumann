@@ -43,17 +43,17 @@ module.exports = class extends Generator {
     // if (this.fs.exists(this.destinationPath(join('src', 'index.tests.ts')))) {
     //   this.fs.delete(this.destinationPath(join('src', 'index.tests.ts')));
     // }
-    // [
-    //   join('src', 'app', 'index.tests.ts'),
-    //   join('src', 'app', 'index.ts'),
-    //   join('src', 'generator', 'index.ts'),
-    //   join('src', 'test-utils.ts'),
-    // ].forEach((file) => {
-    //   this.copyTemplate(
-    //     this.templatePath(`${file}.template`),
-    //     this.destinationPath(file),
-    //   );
-    // });
+    [
+      join('src', 'app', 'index.tests.ts'),
+      join('src', 'app', 'index.ts'),
+      join('src', 'generator', 'index.ts'),
+      join('src', 'test-utils.ts'),
+    ].forEach((file) => {
+      this.copyTemplate(
+        this.templatePath(`${file}.template`),
+        this.destinationPath(file),
+      );
+    });
   }
 
   install() {
