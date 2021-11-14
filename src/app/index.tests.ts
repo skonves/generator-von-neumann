@@ -1,35 +1,39 @@
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
+import * as fs from 'fs';
+import * as rimraf from 'rimraf';
 
-import { TestContext } from '../test-utils';
-
-const sut = new TestContext(__dirname);
+const minutes = 60 * 1000;
 
 describe('ts-console:app', function () {
-  beforeEach(async () => await sut.setup());
-  afterEach(async () => await sut.teardown());
+  jest.setTimeout(10 * minutes);
 
   describe('when the "basic" mode is run', () => {
-    it('genererates a valid application', async () => {
+    it('genererates a valid application', (done) => {
       // ARRANGE
-      jest.setTimeout(300000);
 
       // ACT
-      await sut
-        .run()
-        .withOptions({ skipInstall: false })
-        .withPrompts({ mode: 'basic' });
-
-      // ASSERT
-      await new Promise<void>((resolve, reject) => {
-        exec('npm run build', { cwd: sut.tempdir }, (err) =>
-          !!err ? reject(err) : resolve(),
-        );
-      });
-
-      await new Promise<void>((resolve, reject) => {
-        exec('npm t', { cwd: sut.tempdir }, (err) =>
-          !!err ? reject(err) : resolve(),
-        );
+      const pack = `generator-von-neumann-${
+        require('../../package.json').version
+      }.tgz`;
+      rimraf('./temp', (err) => {
+        if (err) {
+          done(err);
+        } else {
+          try {
+            // execSync('npm pack');
+            // execSync(`npm i -g ${pack}`);
+            fs.mkdirSync('./temp');
+            // execSync('yo von-neumann --mode=basic', { cwd: './temp' });
+            execSync('yo ../generators/app/index.js --mode=basic', {
+              cwd: './temp',
+            });
+            execSync('npm run build', { cwd: './temp' });
+            execSync('npm t', { cwd: './temp' });
+            done();
+          } catch (ex) {
+            done(ex);
+          }
+        }
       });
     });
   });

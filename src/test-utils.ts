@@ -20,8 +20,11 @@ export class TestContext {
   }
 
   teardown(): Promise<void> {
-    return new Promise((resolve, reject) =>
-      rimraf(this._tempdir, (err) => (err ? reject(err) : resolve())),
+    return new Promise((resolve) =>
+      rimraf(this._tempdir, (err) => {
+        if (err) console.warn('Cannot remove temp test folder', err);
+        resolve();
+      }),
     );
   }
 
@@ -29,7 +32,10 @@ export class TestContext {
     return helpers.run(this.generator).inTmpDir((dir) => {
       this._tempdir = dir;
       for (const path of this._files.keys()) {
-        fs.writeFileSync(this.join(path), this._files.get(path));
+        const contents = this._files.get(path);
+        if (typeof contents === 'string') {
+          fs.writeFileSync(this.join(path), contents);
+        }
       }
     });
   }

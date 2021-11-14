@@ -5,7 +5,7 @@ import { TestContext } from '../test-utils';
 const sut = new TestContext(__dirname);
 
 describe('ts-console:app', function () {
-  jest.setTimeout(60000);
+  jest.setTimeout(120000);
   beforeEach(async () => await sut.setup());
   afterEach(async () => await sut.teardown());
 

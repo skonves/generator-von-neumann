@@ -2,26 +2,35 @@ name: build
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
   schedule:
-    - cron: '0 0 * * *' # Run every day at midnight
+    - cron: '0 0 * * 5' # Run every Friday at midnight
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12, 14, 16]
+        os: [ubuntu-latest, windows-latest]
+        node-version: [16, 17]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Set git to use LF
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm i -g yo
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build
       - run: npm test

@@ -7,11 +7,13 @@ module.exports = class extends Generator {
 
     this.registerTransformStream(new PrettierTransform());
 
+    this.composeWith(require.resolve('../build-output'));
     this.composeWith(require.resolve('generator-ts-console/generators/app'), {
       ...options,
       arguments: args,
       linter: 'eslint',
       testing: 'jest',
+      clean: true,
     });
     this.composeWith(require.resolve('../generator'));
   }

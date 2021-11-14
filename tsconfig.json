@@ -7,8 +7,9 @@
     "rootDir": "./src",
     "sourceMap": true,
     "target": "es6",
-    "declaration": true
+    "declaration": true,
+    "strictNullChecks": true
   },
   "include": ["src"],
-  "exclude": ["src/*/templates/*"]
+  "exclude": ["src/*/templates/*", "**/*.test?.*"]
 }
