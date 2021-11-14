@@ -13,6 +13,7 @@ module.exports = class extends Generator {
       arguments: args,
       linter: 'eslint',
       testing: 'jest',
+      clean: true,
     });
     this.composeWith(require.resolve('../generator'));
   }
